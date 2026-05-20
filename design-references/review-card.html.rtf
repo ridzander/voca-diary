@@ -1,0 +1,307 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+\
+<html class="light" lang="en"><head>\
+<meta charset="utf-8"/>\
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>\
+<title>VocaDiary - Review Entry</title>\
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>\
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Quicksand:wght@500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>\
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>\
+<script id="tailwind-config">\
+        tailwind.config = \{\
+            darkMode: "class",\
+            theme: \{\
+                extend: \{\
+                    "colors": \{\
+                        "surface-tint": "#00696b",\
+                        "tertiary-fixed": "#ffe085",\
+                        "tertiary-container": "#d4b75e",\
+                        "secondary-fixed": "#8cf3f3",\
+                        "on-primary-fixed": "#002020",\
+                        "secondary": "#006a6a",\
+                        "on-background": "#0b1c30",\
+                        "error": "#ba1a1a",\
+                        "surface-variant": "#d3e4fe",\
+                        "secondary-container": "#8cf3f3",\
+                        "on-tertiary": "#ffffff",\
+                        "on-surface-variant": "#3b4949",\
+                        "primary-fixed": "#9df1f2",\
+                        "surface-container-low": "#eff4ff",\
+                        "on-secondary-container": "#007070",\
+                        "outline": "#6b7a7a",\
+                        "secondary-fixed-dim": "#6fd7d6",\
+                        "surface-dim": "#cbdbf5",\
+                        "surface-container-highest": "#d3e4fe",\
+                        "primary-container": "#74c7c8",\
+                        "surface": "#f8f9ff",\
+                        "on-primary-fixed-variant": "#004f51",\
+                        "on-error-container": "#93000a",\
+                        "on-secondary-fixed": "#002020",\
+                        "background": "#f8f9ff",\
+                        "on-error": "#ffffff",\
+                        "surface-bright": "#f8f9ff",\
+                        "primary": "#00696b",\
+                        "on-tertiary-container": "#5a4800",\
+                        "primary-fixed-dim": "#81d4d5",\
+                        "on-tertiary-fixed-variant": "#574500",\
+                        "surface-container-high": "#dce9ff",\
+                        "outline-variant": "#bac9c9",\
+                        "on-secondary": "#ffffff",\
+                        "on-secondary-fixed-variant": "#004f4f",\
+                        "on-tertiary-fixed": "#231b00",\
+                        "surface-container": "#e5eeff",\
+                        "inverse-surface": "#213145",\
+                        "inverse-primary": "#81d4d5",\
+                        "tertiary": "#725c06",\
+                        "error-container": "#ffdad6",\
+                        "tertiary-fixed-dim": "#e2c469",\
+                        "on-primary-container": "#005354",\
+                        "on-primary": "#ffffff",\
+                        "surface-container-lowest": "#ffffff",\
+                        "inverse-on-surface": "#eaf1ff",\
+                        "on-surface": "#0b1c30"\
+                    \},\
+                    "borderRadius": \{\
+                        "DEFAULT": "0.25rem",\
+                        "lg": "0.5rem",\
+                        "xl": "0.75rem",\
+                        "full": "9999px"\
+                    \},\
+                    "spacing": \{\
+                        "margin-mobile": "16px",\
+                        "gutter": "24px",\
+                        "unit": "8",\
+                        "container-max": "1280px",\
+                        "margin-desktop": "40px"\
+                    \},\
+                    "fontFamily": \{\
+                        "display-lg": ["Quicksand"],\
+                        "body-md": ["Inter"],\
+                        "body-lg": ["Inter"],\
+                        "label-sm": ["Quicksand"],\
+                        "headline-lg": ["Quicksand"],\
+                        "label-md": ["Quicksand"],\
+                        "headline-md": ["Quicksand"],\
+                        "headline-lg-mobile": ["Quicksand"]\
+                    \},\
+                    "fontSize": \{\
+                        "display-lg": ["48px", \{"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"\}],\
+                        "body-md": ["16px", \{"lineHeight": "24px", "fontWeight": "400"\}],\
+                        "body-lg": ["18px", \{"lineHeight": "28px", "fontWeight": "400"\}],\
+                        "label-sm": ["12px", \{"lineHeight": "16px", "fontWeight": "600"\}],\
+                        "headline-lg": ["32px", \{"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"\}],\
+                        "label-md": ["14px", \{"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"\}],\
+                        "headline-md": ["24px", \{"lineHeight": "32px", "fontWeight": "600"\}],\
+                        "headline-lg-mobile": ["28px", \{"lineHeight": "36px", "fontWeight": "600"\}]\
+                    \}\
+                \},\
+            \},\
+        \}\
+    </script>\
+<style>\
+        .material-symbols-outlined \{\
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\
+        \}\
+        .severity-gradient \{\
+            background: linear-gradient(to right, #4ade80, #fbbf24, #ef4444);\
+        \}\
+        input[type="range"]::-webkit-slider-thumb \{\
+            -webkit-appearance: none;\
+            appearance: none;\
+            width: 20px;\
+            height: 20px;\
+            background: #ffffff;\
+            border: 2px solid #00696b;\
+            border-radius: 50%;\
+            cursor: pointer;\
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);\
+        \}\
+        .hide-scrollbar::-webkit-scrollbar \{\
+            display: none;\
+        \}\
+        .hide-scrollbar \{\
+            -ms-overflow-style: none;\
+            scrollbar-width: none;\
+        \}\
+    </style>\
+<style>\
+    body \{\
+      min-height: max(884px, 100dvh);\
+    \}\
+  </style>\
+  </head>\
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24">\
+<!-- Top App Bar -->\
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline">\
+<div class="flex items-center gap-4">\
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-100">\
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">arrow_back</span>\
+</button>\
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Review</h1>\
+</div>\
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-100">\
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">more_vert</span>\
+</button>\
+</header>\
+<main class="pt-20 px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto space-y-6">\
+<!-- Collapsible Transcript -->\
+<section class="border border-outline-variant rounded-xl overflow-hidden bg-surface-container-lowest">\
+<button class="w-full flex items-center justify-between px-4 py-3 hover:bg-surface-container-low transition-colors" onclick="toggleTranscript()">\
+<span class="font-label-md text-label-md text-on-surface-variant">Show raw transcript</span>\
+<span class="material-symbols-outlined transition-transform duration-300" id="transcript-icon">expand_more</span>\
+</button>\
+<div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-surface-container-low px-4" id="transcript-content">\
+<p class="py-4 text-body-md text-on-surface-variant italic leading-relaxed">\
+                    "Today I had a pretty intense workout but my lower back is acting up again. I did three sets of deadlifts at 60, 80, and then 100 kilograms for 10, 8, and 5 reps. I felt a sharp pinch on the last set of 100. My lower back pain is around the lumber region, feels like a 7.5 out of 10 right now. I think I'm a bit dehydrated today too."\
+                </p>\
+</div>\
+</section>\
+<!-- Ambiguities Banner -->\
+<div class="flex items-center gap-3 px-4 py-3 bg-[#FFF9E6] border border-[#FFE085]/50 rounded-xl cursor-pointer hover:bg-[#FFF4D1] transition-colors">\
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">warning</span>\
+<p class="font-label-md text-label-md text-on-tertiary-fixed">Some details were unclear. Tap to refine.</p>\
+</div>\
+<!-- Symptoms Section -->\
+<div class="space-y-4">\
+<div class="flex items-center gap-2">\
+<span class="material-symbols-outlined text-primary">medical_services</span>\
+<h2 class="font-headline-md text-headline-md text-on-surface">Symptoms</h2>\
+</div>\
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-6">\
+<div class="flex justify-between items-start">\
+<h3 class="font-headline-md text-headline-md">Lower Back Pain</h3>\
+<span class="px-3 py-1 bg-primary-container/20 text-on-primary-container rounded-full text-label-sm font-label-sm">SYMPTOM</span>\
+</div>\
+<div class="space-y-2">\
+<label class="font-label-md text-label-md text-on-surface-variant">Location</label>\
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary-container focus:border-primary outline-none transition-all font-body-md" type="text" value="Lumber region"/>\
+</div>\
+<div class="flex flex-col items-center gap-4 pt-4">\
+<div class="text-center">\
+<span class="font-display-lg text-display-lg text-primary" id="severity-value">7.5</span>\
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Severity</p>\
+</div>\
+<div class="w-full px-2">\
+<div class="relative h-3 w-full rounded-full severity-gradient">\
+<input class="absolute -top-1 left-0 w-full h-5 bg-transparent appearance-none cursor-pointer" id="severity-slider" max="10" min="0" step="0.1" type="range" value="7.5"/>\
+</div>\
+</div>\
+<div class="w-full flex justify-between px-1 text-label-sm text-on-surface-variant">\
+<span>Mild</span>\
+<span>Moderate</span>\
+<span>Severe</span>\
+</div>\
+</div>\
+</div>\
+</div>\
+<!-- Workout Section -->\
+<div class="space-y-4">\
+<div class="flex items-center gap-2">\
+<span class="material-symbols-outlined text-primary">fitness_center</span>\
+<h2 class="font-headline-md text-headline-md text-on-surface">Workout</h2>\
+</div>\
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 space-y-4">\
+<div class="flex justify-between items-center">\
+<h3 class="font-headline-md text-headline-md">Strength Training</h3>\
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full text-label-sm font-label-sm">WORKOUT</span>\
+</div>\
+<div class="border-t border-outline-variant pt-4">\
+<h4 class="font-headline-md text-headline-md text-on-surface-variant mb-4">Deadlift</h4>\
+<div class="overflow-x-auto">\
+<table class="w-full text-left">\
+<thead>\
+<tr class="text-label-sm text-on-surface-variant uppercase border-b border-outline-variant">\
+<th class="py-2 font-semibold">Set</th>\
+<th class="py-2 font-semibold">Volume</th>\
+</tr>\
+</thead>\
+<tbody class="font-mono text-body-md">\
+<tr class="border-b border-surface-container">\
+<td class="py-3">01</td>\
+<td class="py-3">10 x 60kg</td>\
+</tr>\
+<tr class="border-b border-surface-container">\
+<td class="py-3">02</td>\
+<td class="py-3">8 x 80kg</td>\
+</tr>\
+<tr>\
+<td class="py-3">03</td>\
+<td class="py-3 text-error font-bold">5 x 100kg</td>\
+</tr>\
+</tbody>\
+</table>\
+</div>\
+</div>\
+</div>\
+</div>\
+<!-- Factors & Notes Section -->\
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">\
+<div class="space-y-2">\
+<label class="font-label-md text-label-md text-on-surface-variant">Factors</label>\
+<div class="relative">\
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary-container focus:border-primary outline-none transition-all font-body-md" placeholder="Dehydrated, poor sleep..." type="text" value="Dehydrated"/>\
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-sm">edit</span>\
+</div>\
+</div>\
+<div class="space-y-2">\
+<label class="font-label-md text-label-md text-on-surface-variant">Notes</label>\
+<div class="relative">\
+<textarea class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-primary-container focus:border-primary outline-none transition-all font-body-md resize-none h-14">Felt a sharp pinch on the 3rd set</textarea>\
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-sm">edit</span>\
+</div>\
+</div>\
+</div>\
+<!-- Action Area -->\
+<div class="pt-8 pb-12 flex flex-col items-center gap-4">\
+<button class="w-full py-4 bg-error text-on-error rounded-xl font-headline-md text-headline-md shadow-lg active:scale-98 transition-transform hover:opacity-90">\
+                Save\
+            </button>\
+<button class="px-8 py-2 text-on-surface-variant hover:text-error transition-colors font-label-md text-label-md">\
+                Discard\
+            </button>\
+</div>\
+</main>\
+<!-- Bottom Nav Bar (Simulated as Destination Logic applies to top level, but for Review, we provide specific actions) -->\
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-4 bg-surface dark:bg-surface-container-low border-t border-outline-variant rounded-t-xl md:hidden">\
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all" href="#">\
+<span class="material-symbols-outlined">close</span>\
+<span class="font-label-md text-label-md">Discard</span>\
+</a>\
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 transition-all active:scale-98" href="#">\
+<span class="material-symbols-outlined">check_circle</span>\
+<span class="font-label-md text-label-md">Save</span>\
+</a>\
+</nav>\
+<script>\
+        function toggleTranscript() \{\
+            const content = document.getElementById('transcript-content');\
+            const icon = document.getElementById('transcript-icon');\
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') \{\
+                content.style.maxHeight = '0px';\
+                icon.style.transform = 'rotate(0deg)';\
+            \} else \{\
+                content.style.maxHeight = content.scrollHeight + 'px';\
+                icon.style.transform = 'rotate(180deg)';\
+            \}\
+        \}\
+\
+        const slider = document.getElementById('severity-slider');\
+        const display = document.getElementById('severity-value');\
+        slider.addEventListener('input', (e) => \{\
+            display.textContent = e.target.value;\
+            // Dynamics for primary color based on severity could be added here\
+        \});\
+\
+        // Micro-interaction for banner\
+        document.querySelector('.bg-\\\\[\\\\#FFF9E6\\\\]').addEventListener('click', () => \{\
+            alert('Refining entry context...');\
+        \});\
+    </script>\
+</body></html>}

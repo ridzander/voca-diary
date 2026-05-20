@@ -2,26 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* shadcn compat — light only */
+    --background: 220 100% 98%;
+    --foreground: 213 67% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 67% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 67% 12%;
+    --primary: 181 100% 21%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 213 50% 94%;
+    --secondary-foreground: 213 67% 12%;
+    --muted: 220 50% 93%;
+    --muted-foreground: 180 12% 26%;
+    --accent: 173 100% 80%;
+    --accent-foreground: 180 100% 6%;
+    --destructive: 3 73% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 182 20% 74%;
+    --input: 182 20% 74%;
+    --ring: 181 100% 21%;
+    --radius: 0.75rem;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { color-scheme: light; }
+
+  body {
+    background-color: #f8f9ff;
+    color: #0b1c30;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Material Symbols default variation */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    user-select: none;
+  }
+
+  /* Range input — Material You style */
+  input[type='range'] {
+    height: 4px;
+    border-radius: 9999px;
+    background: #bac9c9;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #00696b;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  }
+  input[type='range']::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #00696b;
+    cursor: pointer;
+  }
+
+  select { color-scheme: light; }
+
+  /* Severity slider gradient */
+  .severity-gradient {
+    background: linear-gradient(to right, #4ade80, #fbbf24, #ef4444);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Glass nav backdrop */
+  .glass-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(248, 249, 255, 0.85);
+  }
+
+  /* Active tap response */
+  .tap-response {
+    transition: transform 100ms ease;
+  }
+  .tap-response:active {
+    transform: scale(0.98);
+  }
+
+  /* Scrollable chip row */
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Mic pulse ring */
+  @keyframes mic-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  .mic-pulse::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: inherit;
+    animation: mic-pulse 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }

@@ -1,0 +1,76 @@
+<style>
+  @font-face {
+    font-family: 'Monoton';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://cdn.jsdelivr.net/fontsource/fonts/monoton@latest/latin-400-normal.woff2') format('woff2');
+  }
+  .wrap { padding: 2rem 1.5rem; }
+  .lockup { display: flex; align-items: center; gap: 20px; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); margin-bottom: 2rem; }
+  .wordmark { font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -1px; color: var(--color-text-primary); line-height: 1; }
+  .wordmark span { color: #1D9E75; }
+  .tagline { font-family: var(--font-sans); font-size: 12.5px; color: var(--color-text-secondary); letter-spacing: 1px; margin-top: 5px; }
+  .row { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-end; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .lbl { font-family: var(--font-sans); font-size: 11px; color: var(--color-text-secondary); letter-spacing: 1.5px; }
+  .icon { background: #1D9E75; display: flex; align-items: center; justify-content: center; }
+  .icon span { font-family: 'Monoton', cursive; color: white; line-height: 1; }
+  .icon-lg { width: 104px; height: 104px; border-radius: 24px; }
+  .icon-lg span { font-size: 23px; }
+  .icon-md { width: 72px; height: 72px; border-radius: 17px; }
+  .icon-md span { font-size: 16px; }
+  .icon-sm { width: 48px; height: 48px; border-radius: 12px; }
+  .icon-sm span { font-size: 11.5px; }
+  .preview { padding: 16px; border-radius: 16px; }
+  .preview-dark { background: #0d1b2a; }
+  .preview-light { background: #f0faf6; border: 0.5px solid #d0ede4; }
+  #status { font-family: var(--font-sans); font-size: 12px; color: var(--color-text-secondary); margin-bottom: 1rem; min-height: 18px; }
+</style>
+
+<div class="wrap">
+  <div id="status">Loading Monoton font…</div>
+
+  <div class="lockup">
+    <div class="icon icon-lg"><span>VOCA</span></div>
+    <div>
+      <div class="wordmark">Voca<span>Diary</span></div>
+      <div class="tagline">voice · symptoms · patterns</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="icon icon-lg"><span>VOCA</span></div>
+      <div class="lbl">Large</div>
+    </div>
+    <div class="col">
+      <div class="icon icon-md"><span>VOCA</span></div>
+      <div class="lbl">Medium</div>
+    </div>
+    <div class="col">
+      <div class="icon icon-sm"><span>VOCA</span></div>
+      <div class="lbl">Small</div>
+    </div>
+    <div class="col">
+      <div class="preview preview-dark">
+        <div class="icon icon-md"><span>VOCA</span></div>
+      </div>
+      <div class="lbl">On dark</div>
+    </div>
+    <div class="col">
+      <div class="preview preview-light">
+        <div class="icon icon-md"><span>VOCA</span></div>
+      </div>
+      <div class="lbl">On light</div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.fonts.load("400 23px 'Monoton'").then(() => {
+  document.getElementById('status').textContent = 'Monoton loaded ✓';
+  setTimeout(() => { document.getElementById('status').style.display = 'none'; }, 1500);
+}).catch(() => {
+  document.getElementById('status').textContent = 'Font load error — check connection';
+});
+</script>
