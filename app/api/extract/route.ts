@@ -1,13 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { anthropic, getSymptomPrompt, getWorkoutPrompt } from '@/lib/anthropic'
 import { createSupabaseServerClient } from '@/lib/supabase-server'
+import { logUsage } from '@/lib/usage-logger'
+
+const MODEL = 'claude-haiku-4-5-20251001'
 
 export async function POST(request: NextRequest) {
+  const startTime = Date.now()
   const supabase = createSupabaseServerClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const userId = user.id
 
   const body = (await request.json()) as { mode: 'symptom' | 'workout'; transcript: string }
   const { mode, transcript } = body
@@ -20,7 +26,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const response = await anthropic.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+      model: MODEL,
       max_tokens: 2000,
       system: systemPrompt,
       messages: [{ role: 'user', content: transcript }],
@@ -40,17 +46,47 @@ export async function POST(request: NextRequest) {
 
     try {
       const extracted = JSON.parse(cleanText)
+
+      await logUsage({
+        userId,
+        route: '/api/extract',
+        model: MODEL,
+        inputTokens: response.usage.input_tokens,
+        outputTokens: response.usage.output_tokens,
+        durationMs: Date.now() - startTime,
+        status: 'success',
+      })
+
       return NextResponse.json({ extracted, raw_response: rawText })
     } catch {
       console.error('[extract] JSON parse failed. Raw output:', rawText)
+
+      await logUsage({
+        userId,
+        route: '/api/extract',
+        model: MODEL,
+        inputTokens: response.usage.input_tokens,
+        outputTokens: response.usage.output_tokens,
+        durationMs: Date.now() - startTime,
+        status: 'error',
+        errorMessage: 'JSON parse failed',
+      })
+
       return NextResponse.json(
-        { error: 'Could not parse model output as JSON', raw_response: rawText },
+        { error: 'Something went wrong' },
         { status: 500 }
       )
     }
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Extraction failed'
     console.error('[extract]', err)
-    return NextResponse.json({ error: message }, { status: 500 })
+    await logUsage({
+      userId,
+      route: '/api/extract',
+      model: MODEL,
+      durationMs: Date.now() - startTime,
+      status: 'error',
+      errorMessage: err instanceof Error ? err.message : String(err),
+    })
+    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 })
   }
 }

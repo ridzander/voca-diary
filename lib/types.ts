@@ -124,3 +124,20 @@ export interface LiveSessionState {
 }
 
 export const LIVE_SESSION_STORAGE_KEY = 'voca-diary-live-session'
+
+// ── Observability ─────────────────────────────────────────────────────────────
+
+export interface UsageRow {
+  id: string
+  user_id: string | null
+  route: string
+  model: string | null
+  input_tokens: number | null
+  output_tokens: number | null
+  audio_seconds: number | null
+  cost_usd: number | null
+  duration_ms: number
+  status: 'success' | 'error'
+  error_message: string | null
+  created_at: string
+}

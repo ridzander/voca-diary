@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Icon } from '@/components/ui/ms-icon'
 import { TopAppBar } from '@/components/ui/top-app-bar'
+import { TopBarActions } from '@/components/TopBarActions'
 import { BottomNav } from '@/components/ui/bottom-nav'
 import { QuickLogSheet } from '@/components/QuickLogSheet'
 import { LogWorkoutSheet } from '@/components/LogWorkoutSheet'
@@ -41,7 +42,7 @@ export function HomeClient({ entries, weekWorkouts, avgSeverityThisWeek, hasSymp
 
   return (
     <>
-      <TopAppBar />
+      <TopAppBar rightSlot={<TopBarActions />} />
       <main className="mt-20 pb-28 px-container-padding-mobile max-w-[1140px] mx-auto">
 
         {/* Greeting */}

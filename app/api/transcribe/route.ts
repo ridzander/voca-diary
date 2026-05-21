@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { openai } from '@/lib/openai';
+import { createSupabaseServerClient } from '@/lib/supabase-server';
+import { logUsage } from '@/lib/usage-logger';
 
 const MOCK_TRANSCRIPTS = [
   'Having a headache, maybe a 6 out of 10. Had a lot of screen time today.',
@@ -10,14 +12,21 @@ const MOCK_TRANSCRIPTS = [
 ];
 
 export async function POST(request: NextRequest) {
-  // Mock mode — set MOCK_TRANSCRIPTION=true in .env.local to skip Whisper during dev
-  if (process.env.MOCK_TRANSCRIPTION === 'true') {
-    await new Promise((r) => setTimeout(r, 800)); // simulate latency
-    const transcript = MOCK_TRANSCRIPTS[Math.floor(Math.random() * MOCK_TRANSCRIPTS.length)];
-    return NextResponse.json({ transcript });
-  }
+  const startTime = Date.now();
+  let userId: string | null = null;
 
   try {
+    const supabase = createSupabaseServerClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    userId = user?.id ?? null;
+
+    // Mock mode — set MOCK_TRANSCRIPTION=true in .env.local to skip Whisper during dev
+    if (process.env.MOCK_TRANSCRIPTION === 'true') {
+      await new Promise((r) => setTimeout(r, 800));
+      const transcript = MOCK_TRANSCRIPTS[Math.floor(Math.random() * MOCK_TRANSCRIPTS.length)];
+      return NextResponse.json({ transcript });
+    }
+
     const formData = await request.formData();
     const audio = formData.get('audio');
 
@@ -25,15 +34,33 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No audio file provided' }, { status: 400 });
     }
 
+    const audioSeconds = Math.round(audio.size / 16000);
+
     const transcription = await openai.audio.transcriptions.create({
       file: audio,
       model: 'whisper-1',
     });
 
+    await logUsage({
+      userId,
+      route: '/api/transcribe',
+      model: 'whisper-1',
+      audioSeconds,
+      durationMs: Date.now() - startTime,
+      status: 'success',
+    });
+
     return NextResponse.json({ transcript: transcription.text });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Transcription failed';
     console.error('[transcribe]', err);
-    return NextResponse.json({ error: message }, { status: 500 });
+    await logUsage({
+      userId,
+      route: '/api/transcribe',
+      model: 'whisper-1',
+      durationMs: Date.now() - startTime,
+      status: 'error',
+      errorMessage: err instanceof Error ? err.message : String(err),
+    });
+    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
   }
 }
