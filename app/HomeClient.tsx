@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Icon } from '@/components/ui/ms-icon'
 import { TopAppBar } from '@/components/ui/top-app-bar'
-import { TopBarActions } from '@/components/TopBarActions'
 import { BottomNav } from '@/components/ui/bottom-nav'
 import { QuickLogSheet } from '@/components/QuickLogSheet'
 import { LogWorkoutSheet } from '@/components/LogWorkoutSheet'
@@ -31,25 +30,26 @@ interface Props {
   weekWorkouts: number
   avgSeverityThisWeek: number | null
   hasSymptomData: boolean
+  firstName: string | null
   userEmail: string | null
 }
 
-export function HomeClient({ entries, weekWorkouts, avgSeverityThisWeek, hasSymptomData, userEmail }: Props) {
+export function HomeClient({ entries, weekWorkouts, avgSeverityThisWeek, hasSymptomData, firstName, userEmail }: Props) {
   const [quickLogOpen, setQuickLogOpen] = useState(false)
   const [workoutSheetOpen, setWorkoutSheetOpen] = useState(false)
 
-  const username = userEmail ? userEmail.split('@')[0] : null
+  const displayName = firstName || (userEmail ? userEmail.split('@')[0] : null)
 
   return (
     <>
-      <TopAppBar rightSlot={<TopBarActions />} />
+      <TopAppBar />
       <main className="mt-20 pb-28 px-container-padding-mobile max-w-[1140px] mx-auto">
 
         {/* Greeting */}
         <div className="mb-6 pt-4">
           <p className="text-caption text-on-surface-variant">{greeting()}</p>
-          {username && (
-            <h1 className="font-headline text-headline-md font-bold text-on-surface mt-0.5 capitalize">{username}</h1>
+          {displayName && (
+            <h1 className="font-headline text-headline-md font-bold text-on-surface mt-0.5 capitalize">{displayName}</h1>
           )}
         </div>
 

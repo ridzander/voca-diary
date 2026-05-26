@@ -5,25 +5,25 @@
 @layer base {
   :root {
     /* shadcn compat — light only */
-    --background: 220 100% 98%;
-    --foreground: 213 67% 12%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
     --card: 0 0% 100%;
-    --card-foreground: 213 67% 12%;
+    --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 213 67% 12%;
-    --primary: 181 100% 21%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 174 73% 26%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 213 50% 94%;
-    --secondary-foreground: 213 67% 12%;
-    --muted: 220 50% 93%;
-    --muted-foreground: 180 12% 26%;
-    --accent: 173 100% 80%;
-    --accent-foreground: 180 100% 6%;
-    --destructive: 3 73% 42%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 174 100% 90%;
+    --accent-foreground: 174 80% 16%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 182 20% 74%;
-    --input: 182 20% 74%;
-    --ring: 181 100% 21%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 174 73% 26%;
     --radius: 0.75rem;
   }
 
@@ -32,8 +32,8 @@
   html { color-scheme: light; }
 
   body {
-    background-color: #f8f9ff;
-    color: #0b1c30;
+    background-color: #ffffff;
+    color: #0A0A0A;
     font-family: var(--font-inter), system-ui, sans-serif;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -61,7 +61,7 @@
   input[type='range'] {
     height: 4px;
     border-radius: 9999px;
-    background: #bac9c9;
+    background: #E4E4E7;
     outline: none;
     border: none;
     cursor: pointer;
@@ -72,7 +72,7 @@
     height: 20px;
     border-radius: 50%;
     background: #ffffff;
-    border: 2px solid #00696b;
+    border: 2px solid #0F766E;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0,0,0,0.12);
   }
@@ -81,7 +81,7 @@
     height: 20px;
     border-radius: 50%;
     background: #ffffff;
-    border: 2px solid #00696b;
+    border: 2px solid #0F766E;
     cursor: pointer;
   }
 
@@ -98,7 +98,7 @@
   .glass-nav {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    background-color: rgba(248, 249, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.88);
   }
 
   /* Active tap response */

@@ -12,12 +12,14 @@ async function getHomeData() {
     { data: weekSymptoms },
     { data: weekWorkouts },
     { data: { user } },
+    { data: profile },
   ] = await Promise.all([
     supabase.from('symptom_entries').select('id, created_at, symptoms').order('created_at', { ascending: false }).limit(3),
     supabase.from('workout_entries').select('id, created_at, session_label, activities').order('created_at', { ascending: false }).limit(3),
     supabase.from('symptom_entries').select('symptoms').gte('created_at', weekAgo),
     supabase.from('workout_entries').select('id').gte('created_at', weekAgo),
     supabase.auth.getUser(),
+    supabase.from('profiles').select('first_name').maybeSingle(),
   ])
 
   type AnyEntry = { id: string; created_at: string; kind: 'symptom' | 'workout'; label: string }
@@ -37,7 +39,6 @@ async function getHomeData() {
     .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
     .slice(0, 3)
 
-  // Week stats for hero card
   const severities = (weekSymptoms ?? []).flatMap((s: Partial<SymptomEntryRow>) =>
     (s.symptoms ?? []).map((sym) => sym.severity).filter((v): v is number => v !== null)
   )
@@ -50,6 +51,7 @@ async function getHomeData() {
     weekWorkouts: (weekWorkouts ?? []).length,
     avgSeverityThisWeek: avgSeverity,
     hasSymptomData: severities.length > 0,
+    firstName: (profile as { first_name?: string | null } | null)?.first_name ?? null,
     userEmail: user?.email ?? null,
   }
 }
