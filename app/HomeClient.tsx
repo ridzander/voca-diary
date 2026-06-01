@@ -105,31 +105,39 @@ export function HomeClient({ entries, weekWorkouts, avgSeverityThisWeek, hasSymp
           )}
         </div>
 
-        {/* Action cards */}
+        {/* Daily Check-in — hero action */}
+        <Link
+          href="/checkin"
+          className="flex flex-col items-center justify-center gap-2 rounded-xl h-[140px] bg-primary mb-3 active:scale-95 transition-transform duration-150"
+        >
+          <Icon name="mic" size={36} fill={1} className="text-on-primary" />
+          <p className="font-headline text-body-lg font-semibold text-on-primary">Daily Check-in</p>
+          <p className="text-caption text-on-primary/75">Sleep · Mood · Food · Symptoms · Workout</p>
+        </Link>
+
+        {/* Secondary action cards */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           <Link
             href="/record/symptom"
-            className="relative rounded-xl overflow-hidden h-[120px] active:scale-95 transition-transform duration-150 block"
+            className="relative rounded-xl overflow-hidden h-[100px] active:scale-95 transition-transform duration-150 block"
             style={{ backgroundImage: 'url(/images/log-symptom.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20" />
-            <div className="absolute inset-0 z-10 flex flex-col items-start justify-end p-4">
-              <Icon name="mic" size={20} fill={1} className="text-white mb-1" />
-              <p className="font-headline text-body-lg font-semibold text-white leading-tight">Log Symptom</p>
-              <p className="text-caption text-white/75 mt-0.5">Voice or quick tap</p>
+            <div className="absolute inset-0 z-10 flex flex-col items-start justify-end p-3">
+              <Icon name="mic" size={18} fill={1} className="text-white mb-0.5" />
+              <p className="font-headline text-body-md font-semibold text-white leading-tight">Log Symptom</p>
             </div>
           </Link>
 
           <button
             onClick={() => setWorkoutSheetOpen(true)}
-            className="relative rounded-xl overflow-hidden h-[120px] active:scale-95 transition-transform duration-150 text-left"
+            className="relative rounded-xl overflow-hidden h-[100px] active:scale-95 transition-transform duration-150 text-left"
             style={{ backgroundImage: 'url(/images/log-workout.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20" />
-            <div className="absolute inset-0 z-10 flex flex-col items-start justify-end p-4">
-              <Icon name="fitness_center" size={20} fill={1} className="text-white mb-1" />
-              <p className="font-headline text-body-lg font-semibold text-white leading-tight">Log Workout</p>
-              <p className="text-caption text-white/75 mt-0.5">Voice or live sets</p>
+            <div className="absolute inset-0 z-10 flex flex-col items-start justify-end p-3">
+              <Icon name="fitness_center" size={18} fill={1} className="text-white mb-0.5" />
+              <p className="font-headline text-body-md font-semibold text-white leading-tight">Log Workout</p>
             </div>
           </button>
         </div>
@@ -144,16 +152,31 @@ export function HomeClient({ entries, weekWorkouts, avgSeverityThisWeek, hasSymp
                 className="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex items-center gap-4"
               >
                 <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-                  entry.kind === 'symptom' ? 'bg-primary-container' : 'bg-tertiary-container'
+                  entry.kind === 'symptom'
+                    ? 'bg-primary-container'
+                    : entry.kind === 'workout'
+                    ? 'bg-tertiary-container'
+                    : 'bg-secondary-container'
                 }`}>
                   <Icon
-                    name={entry.kind === 'symptom' ? 'mic' : 'fitness_center'}
+                    name={entry.kind === 'symptom' ? 'mic' : entry.kind === 'workout' ? 'fitness_center' : 'calendar_today'}
                     size={20}
                     fill={1}
-                    className={entry.kind === 'symptom' ? 'text-on-primary-container' : 'text-on-tertiary-container'}
+                    className={
+                      entry.kind === 'symptom'
+                        ? 'text-on-primary-container'
+                        : entry.kind === 'workout'
+                        ? 'text-on-tertiary-container'
+                        : 'text-on-secondary-container'
+                    }
                   />
                 </div>
                 <div className="flex flex-col min-w-0 flex-1">
+                  {entry.kind === 'checkin' && (
+                    <span className="text-label-sm font-semibold text-on-secondary-container bg-secondary-container rounded-full px-2 py-0.5 w-fit mb-1">
+                      Daily Check-in
+                    </span>
+                  )}
                   <p className="text-body-md font-semibold text-on-surface truncate capitalize">{entry.label}</p>
                   <p className="text-caption text-on-surface-variant">
                     {dayLabel(entry.created_at.slice(0, 10))} · {timeLabel(entry.created_at)}

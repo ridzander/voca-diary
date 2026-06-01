@@ -13,6 +13,7 @@ async function getHomeData() {
     { data: weekWorkouts },
     { data: { user } },
     { data: profile },
+    { data: checkins },
   ] = await Promise.all([
     supabase.from('symptom_entries').select('id, created_at, symptoms').order('created_at', { ascending: false }).limit(3),
     supabase.from('workout_entries').select('id, created_at, session_label, activities').order('created_at', { ascending: false }).limit(3),
@@ -20,9 +21,10 @@ async function getHomeData() {
     supabase.from('workout_entries').select('id').gte('created_at', weekAgo),
     supabase.auth.getUser(),
     supabase.from('profiles').select('first_name').maybeSingle(),
+    supabase.from('daily_checkins').select('id, created_at, raw_extraction').order('created_at', { ascending: false }).limit(3),
   ])
 
-  type AnyEntry = { id: string; created_at: string; kind: 'symptom' | 'workout'; label: string }
+  type AnyEntry = { id: string; created_at: string; kind: 'symptom' | 'workout' | 'checkin'; label: string }
 
   const symptomRows: AnyEntry[] = (symptoms ?? []).map((s: Partial<SymptomEntryRow>) => {
     const first = Array.isArray(s.symptoms) && s.symptoms.length > 0 ? s.symptoms[0] : null
@@ -35,7 +37,16 @@ async function getHomeData() {
     return { id: w.id!, created_at: w.created_at!, kind: 'workout', label: `${w.session_label ?? 'workout'} · ${count} exercise${count !== 1 ? 's' : ''}` }
   })
 
-  const recentEntries = [...symptomRows, ...workoutRows]
+  const checkinRows: AnyEntry[] = (checkins ?? []).map((c: { id: string; created_at: string; raw_extraction: Record<string, unknown> | null }) => {
+    const rx = c.raw_extraction
+    const populated = ['sleep', 'mood', 'nutrition', 'symptoms', 'workout']
+      .filter((k) => rx?.[k] != null)
+      .map((k) => k.charAt(0).toUpperCase() + k.slice(1))
+    const label = populated.length > 0 ? populated.join(' · ') : 'Daily check-in'
+    return { id: c.id, created_at: c.created_at, kind: 'checkin', label }
+  })
+
+  const recentEntries = [...symptomRows, ...workoutRows, ...checkinRows]
     .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
     .slice(0, 3)
 
