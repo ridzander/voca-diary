@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Icon } from '@/components/ui/ms-icon'
 import { TopAppBar } from '@/components/ui/top-app-bar'
 import { BottomNav } from '@/components/ui/bottom-nav'
@@ -108,11 +109,22 @@ export function HomeClient({ entries, weekWorkouts, avgSeverityThisWeek, hasSymp
         {/* Daily Check-in — hero action */}
         <Link
           href="/checkin"
-          className="flex flex-col items-center justify-center gap-2 rounded-xl h-[140px] bg-primary mb-3 active:scale-95 transition-transform duration-150"
+          className="relative rounded-xl overflow-hidden h-[160px] active:scale-95 transition-transform duration-150 block mb-3"
         >
-          <Icon name="mic" size={36} fill={1} className="text-on-primary" />
-          <p className="font-headline text-body-lg font-semibold text-on-primary">Daily Check-in</p>
-          <p className="text-caption text-on-primary/75">Sleep · Mood · Food · Symptoms · Workout</p>
+          <Image
+            src="/images/daily-checkin.jpeg"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20" />
+          <div className="absolute inset-0 z-10 flex flex-col items-start justify-end p-4">
+            <Icon name="mic" size={22} fill={1} className="text-white mb-1" />
+            <p className="font-headline text-headline-md font-semibold text-white drop-shadow-sm leading-tight">Daily Check-in</p>
+            <p className="text-caption text-white/80 mt-0.5 drop-shadow-sm">Sleep · Mood · Food · Symptoms · Workout</p>
+          </div>
         </Link>
 
         {/* Secondary action cards */}
