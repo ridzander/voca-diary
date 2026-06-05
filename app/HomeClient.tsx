@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Icon } from '@/components/ui/ms-icon'
 import { TopAppBar } from '@/components/ui/top-app-bar'
 import { BottomNav } from '@/components/ui/bottom-nav'
@@ -110,15 +109,8 @@ export function HomeClient({ entries, weekWorkouts, avgSeverityThisWeek, hasSymp
         <Link
           href="/checkin"
           className="relative rounded-xl overflow-hidden h-[160px] active:scale-95 transition-transform duration-150 block mb-3"
+          style={{ backgroundImage: 'url(/images/daily-checkin.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
         >
-          <Image
-            src="/images/daily-checkin.jpeg"
-            alt=""
-            aria-hidden
-            fill
-            priority
-            className="object-cover"
-          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20" />
           <div className="absolute inset-0 z-10 flex flex-col items-start justify-end p-4">
             <Icon name="mic" size={22} fill={1} className="text-white mb-1" />
